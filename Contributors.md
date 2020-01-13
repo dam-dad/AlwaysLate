@@ -1,3 +1,3 @@
-Jonay Puerta González
-Aitor del Castillo Expósito
-Victor Bethencourt Barrera
+Jonay Puerta González <br>
+Aitor del Castillo Expósito <br>
+Victor Bethencourt Barrera <br>
