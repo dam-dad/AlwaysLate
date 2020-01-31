@@ -1,4 +1,4 @@
-package dad.template.javafx;
+package dad.javafx.game;
 
 import java.io.IOException;
 import java.net.URL;

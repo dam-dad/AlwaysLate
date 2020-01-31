@@ -1,4 +1,4 @@
-package dad.template.javafx;
+package dad.javafx.game;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

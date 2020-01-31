@@ -1,4 +1,4 @@
-package dad.template.javafx;
+package dad.javafx.game;
 
 public class Main {
 
