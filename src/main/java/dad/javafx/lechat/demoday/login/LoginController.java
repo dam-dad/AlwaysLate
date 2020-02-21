@@ -94,7 +94,7 @@ public class LoginController implements Initializable {
             ClientController.th.stop();
             System.exit(0);
         });
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     	
     	

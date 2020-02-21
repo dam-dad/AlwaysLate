@@ -19,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
@@ -34,7 +35,10 @@ public class ClientController implements Initializable {
 	DataInputStream dis;
 	
 	
-
+	ObservableList<String> names = FXCollections.observableArrayList(
+	          "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
+	
+	
 	@FXML
 	private BorderPane view;
 
@@ -53,8 +57,7 @@ public class ClientController implements Initializable {
 	@FXML
 	private static ListView<String> listaClientes;
 
-	private String cadena = "";
-	
+	private String cadena;
 	
 	
 
@@ -65,6 +68,7 @@ public class ClientController implements Initializable {
 		 * FXMLLoader(getClass().getResource("/fxml/leChatLogin.fxml"));
 		 * loader.setController(this); loader.load();
 		 */
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/leChat.fxml"));
 		loader.setController(this);
 		loader.load();
@@ -77,14 +81,17 @@ public class ClientController implements Initializable {
 		
 		
 		
+		//clientes.add(datos.nickname);
+		
 		/*
 		 * This Thread let the client recieve the message from the server for any time;
 		 */
 		
-		/*
-		ObservableList<String> names = FXCollections.observableArrayList(
-		          "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
-		 ListView<String> listView = new ListView<String>(names);
+		
+		
+		
+		
+		/*ListView<String> listView = new ListView<String>(names);
 		
 		 listaClientes.getItems().setAll(names);
 		*/
@@ -100,21 +107,30 @@ public class ClientController implements Initializable {
 
 					System.out.println("RE : " + newMsgJson);
 					Message newMsg = new Message();
-
+					
 					Object obj = parser.parse(newMsgJson);
 					JSONObject msg = (JSONObject) obj;
 
 					newMsg.setName((String) msg.get("name"));
 					newMsg.setMessage((String) msg.get("message"));
 
-					
-
 					cadena += newMsg.getName() + " : " + newMsg.getMessage() + "\n";
 
+					//clientes.add(new String((String) msg.get("name")));
+					
+					// -- [ intentando añadir una lista fija en el hilo ] ----
+					
+					
 					chatArea.setText(cadena);
 					
 					
 					System.out.println("[>] "+datos.nickname);
+					
+					if(newMsg.getName().equals("#fill_clients_list")) {
+						System.out.println("[!] La idea no es mala");	
+						listaClientes.setItems(names);
+						//listaClientes.getItems().add("EY");
+					}
 					
 					
 					//String cliente = (String) msg.get("name");
@@ -126,7 +142,15 @@ public class ClientController implements Initializable {
 				}
 			} catch (Exception E) {
 				E.printStackTrace();
+			} 
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
 		});
 
 		th.start();
@@ -136,7 +160,7 @@ public class ClientController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-
+		listaClientes = new ListView<String>(); 
 	}
 
 	@FXML
@@ -159,6 +183,8 @@ public class ClientController implements Initializable {
 			dos.writeUTF(json);
 			mensajeText.setText("");
 			mensajeText.requestFocus();
+			
+			//listaClientes.getItems().add("test");
 
 		} catch (IOException E) {
 			E.printStackTrace();

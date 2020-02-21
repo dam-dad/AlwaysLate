@@ -44,7 +44,7 @@ public class LoginApp extends Application {
 		});
 
 		primaryStage.setTitle("LeChat v1.0.0");
-		primaryStage.initStyle(StageStyle.UNDECORATED);
+		//primaryStage.initStyle(StageStyle.UNDECORATED);
 		// primaryStage.setScene(new Scene(controller.getView(), 600,400));
 		primaryStage.setScene(new Scene(controller.getView()));
 		primaryStage.getIcons().add(new Image(getClass().getResource("/img/chatIco.jpg").toExternalForm()));
