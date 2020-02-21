@@ -8,8 +8,8 @@
 	<artifactId>Alwayslate</artifactId>
 	<version>1.0.0</version>
 
-	<name>AlwaysLate</name>
-	<description>Juego de tipo arcade con la estética de Pokemon (versión GameBoy-Color) en JavaFX. La historia se basa en las dificultades de un alumno para llegar temprano a clase.</description>
+	<name>LeChat</name>
+	<description>Aplicativo de chat en JavaFX usando modelo cliente/servidor</description>
 
 	<properties>
 		<maven.compiler.target>11</maven.compiler.target>
