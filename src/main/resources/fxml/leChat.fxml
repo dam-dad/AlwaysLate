@@ -39,18 +39,21 @@
       </MenuBar>
    </top>
    <center>
-      <SplitPane dividerPositions="0.7474916387959866" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.75" BorderPane.alignment="CENTER">
         <items>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane>
                <bottom>
-                  <HBox fillHeight="false" prefHeight="54.0" prefWidth="452.0" BorderPane.alignment="CENTER">
+                  <HBox fillHeight="false" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="mensajeText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="470.0" promptText="Introduce tu mensaje...">
+                        <TextField fx:id="mensajeText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Introduce tu mensaje..." HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
                         </TextField>
-                        <Button fx:id="enviarButton" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onenviarButton" prefHeight="100.0" prefWidth="200.0" text="Enviar">
+                        <Button fx:id="enviarButton" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onenviarButton" prefHeight="37.0" text="Enviar">
                            <opaqueInsets>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </opaqueInsets>
@@ -59,70 +62,78 @@
                            </HBox.margin>
                         </Button>
                      </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                   </HBox>
                </bottom>
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
                <center>
-                  <TextArea fx:id="chatArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TextArea fx:id="chatArea" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                   </TextArea>
                </center>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <GridPane BorderPane.alignment="CENTER">
+                  <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="204.0" minHeight="0.0" prefHeight="193.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="137.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="ALWAYS" />
+                      <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <children>
-                        <Label text="Clientes" textAlignment="CENTER" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <ImageView fitHeight="114.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="197.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
                                  <image>
                                     <Image url="@../img/chatLogo.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
-                           <children>
-                              <Button fx:id="salirButton" mnemonicParsing="false" onAction="#onsalirButton" prefHeight="25.0" prefWidth="110.0" text="Salir del Server">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                           <opaqueInsets>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </HBox>
-                        <ListView fx:id="listaClientes" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                        <ListView fx:id="listaClientes" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
                      </children>
                      <opaqueInsets>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </opaqueInsets>
                   </GridPane>
                </center>
+               <bottom>
+                  <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="salirButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onsalirButton" prefHeight="37.0" text="Salir del Server">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </bottom>
+               <top>
+                  <Label text="Clientes" textAlignment="CENTER" BorderPane.alignment="TOP_LEFT" />
+               </top>
             </BorderPane>
         </items>
       </SplitPane>
