@@ -18,7 +18,7 @@ public class Server {
 
 	Server() {
 
-		System.out.println("Server");
+		System.out.println("[i] Server iniciado por el puerto 5555");
 
 		String name;
 		Socket client;
@@ -55,7 +55,7 @@ public class Server {
 				System.out.println("[i] Cantidad de usuarios conectados: " + Server.clients.size());
 				System.out.println("[i] Nombre de usuarios conectados: ");
 				for (int i = 0; i < Server.clients_name.size(); i++) {
-					System.out.println("\t[>] " + Server.clients_name.get(i));
+					System.out.println("\t[>] " +  Server.clients_name.get(i) + " ---> " + Server.clients.get(i));
 				}
 
 				if (!Server.clients_name.isEmpty()) {
