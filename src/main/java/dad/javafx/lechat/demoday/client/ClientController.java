@@ -188,7 +188,17 @@ public class ClientController implements Initializable {
 
 	@FXML
 	void onsalirButton(ActionEvent event) {
+		
+		//23/02/2020
+		//Sacar al cliente de la lista
+		//Victor
+		try {
+		listaClientes.getItems().remove(listaClientes.getItems().size()-1);
+		}catch (Exception e) {
+			System.err.println("[i] La lista de clientes está actualmente vacía...");
+		}
 		System.exit(0);
+		
 	}
 
 	public BorderPane getView() {

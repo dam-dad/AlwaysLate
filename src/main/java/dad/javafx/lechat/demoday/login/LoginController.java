@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import jdk.nashorn.internal.runtime.ListAdapter;
 
 
 public class LoginController implements Initializable {
@@ -72,6 +73,12 @@ public class LoginController implements Initializable {
     	
     	this.tempPort = portText.getText();
     	datos.port = Integer.parseInt(tempPort);
+    	
+    	
+    	//23/02/2020 
+    	//Intento de añadir los contactos a la lista desde el login.
+    	
+    	
     	
     	// -- [ test launch chat ] ------------------------------
     	

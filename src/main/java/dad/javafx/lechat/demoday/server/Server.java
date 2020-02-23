@@ -31,7 +31,7 @@ public class Server {
 			ServerSocket servSock = new ServerSocket(5555);
 
 			while (true) {
-				//clients_name.clear();
+				// clients_name.clear();
 				client = servSock.accept();
 				dis = new DataInputStream(client.getInputStream());
 				dos = new DataOutputStream(client.getOutputStream());
@@ -55,15 +55,14 @@ public class Server {
 				System.out.println("[i] Cantidad de usuarios conectados: " + Server.clients.size());
 				System.out.println("[i] Nombre de usuarios conectados: ");
 				for (int i = 0; i < Server.clients_name.size(); i++) {
-					System.out.println("\t[>] " +  Server.clients_name.get(i) + " ---> " + Server.clients.get(i));
+					System.out.println("\t[>] " + Server.clients_name.get(i) + " ---> " + Server.clients.get(i));
 				}
 
 				if (!Server.clients_name.isEmpty()) {
 					for (int i = 0; i < Server.clients_name.size(); i++) {
-						
-						String test_usuarios = "{ \"name\" : \"" + "#fill_clients_list"
-								+ "\", \"message\" \"" + Server.clients_name.get(i)
-								+ "\"}";
+
+						String test_usuarios = "{ \"name\" : \"" + "#fill_clients_list" + "\", \"message\" \""
+								+ Server.clients_name.get(i) + "\"}";
 
 						for (Client cli : entry) {
 							DataOutputStream edos = cli.getDos();
