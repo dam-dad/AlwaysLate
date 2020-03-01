@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="458.0" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="458.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <TextArea fx:id="messagesArea" editable="false" focusTraversable="false" prefHeight="317.0" prefWidth="568.0" promptText="no messages...." BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -26,14 +26,14 @@
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="messageField" promptText="private message..." />
-            <Button fx:id="sentMessage" mnemonicParsing="false" text="Sent Message" GridPane.columnIndex="1">
+            <TextField fx:id="messageField" prefHeight="25.0" prefWidth="385.0" promptText="Mensaje privado..." GridPane.columnSpan="2" />
+            <Button fx:id="sentMessage" mnemonicParsing="false" text="Enviar" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
@@ -45,7 +45,7 @@
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
    <top>
-      <Label fx:id="label" alignment="CENTER" focusTraversable="false" prefHeight="19.0" prefWidth="668.0" text="Private Chatting with -&gt;" BorderPane.alignment="CENTER">
+      <Label fx:id="label" alignment="CENTER" focusTraversable="false" prefHeight="19.0" prefWidth="668.0" text="Chat privado con -&gt;" BorderPane.alignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>

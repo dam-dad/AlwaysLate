@@ -35,6 +35,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 
@@ -128,8 +129,7 @@ public class ChatScene extends BorderPane implements Initializable {
 
 				if (clientesList.getItems().size() != 0 && !clientesList.getSelectionModel().isEmpty()) {
 					String selected = clientesList.getSelectionModel().getSelectedItem();
-					
-					
+
 					if (privateChatWindows.stream().anyMatch(window -> {
 						if (window.receiver.equals(selected)) {
 							window.show();
@@ -176,15 +176,77 @@ public class ChatScene extends BorderPane implements Initializable {
 				else if (text.equals("GETINFO"))
 					chatClient.sentMessage("GETINFO");
 				else {
+					// emoji
+					if (mensajeText.getText().contains(":D")) {
+						mensajeText.setText(mensajeText.getText().replace(":D", "😁"));
+						text = mensajeText.getText();
+						// Print my Message to Me
+						int lengthBefore = areaText.getText().length();
+						areaText.appendText((text.isEmpty() ? "" : "\n") + "Usted" + "->" + text);
+						areaText.setStyle(lengthBefore, (lengthBefore + 6),
+								"-fx-font-weight:bold; -fx-font-size:14px; -fx-fill:maroon;");
 
-					// Print my Message to Me
-					int lengthBefore = areaText.getText().length();
-					areaText.appendText((text.isEmpty() ? "" : "\n") + "Usted" + "->" + text);
-					areaText.setStyle(lengthBefore, (lengthBefore + 6),
-							"-fx-font-weight:bold; -fx-font-size:14px; -fx-fill:maroon;");
+						// Send it
+						chatClient.sentMessage("GMESS" + text);
+						
+					} else if (mensajeText.getText().contains(":)")) {
+						mensajeText.setText(mensajeText.getText().replace(":)", "🙂"));
+						
+						text = mensajeText.getText();
+						// Print my Message to Me
+						int lengthBefore = areaText.getText().length();
+						areaText.appendText((text.isEmpty() ? "" : "\n") + "Usted" + "->" + text);
+						areaText.setStyle(lengthBefore, (lengthBefore + 6),
+								"-fx-font-weight:bold; -fx-font-size:14px; -fx-fill:maroon;");
+
+						// Send it
+						chatClient.sentMessage("GMESS" + text);
+						
+						
+					} else if (mensajeText.getText().contains(":(")) {
+						mensajeText.setText(mensajeText.getText().replace(":(", "☹️"));
+						
+						text = mensajeText.getText();
+						// Print my Message to Me
+						int lengthBefore = areaText.getText().length();
+						areaText.appendText((text.isEmpty() ? "" : "\n") + "Usted" + "->" + text);
+						areaText.setStyle(lengthBefore, (lengthBefore + 6),
+								"-fx-font-weight:bold; -fx-font-size:14px; -fx-fill:maroon;");
+
+						// Send it
+						chatClient.sentMessage("GMESS" + text);
+						
+						
+					} else if (mensajeText.getText().contains(":@")) {
+						mensajeText.setText(mensajeText.getText().replace(":@", "😡"));
+						
+						text = mensajeText.getText();
+						// Print my Message to Me
+						int lengthBefore = areaText.getText().length();
+						areaText.appendText((text.isEmpty() ? "" : "\n") + "Usted" + "->" + text);
+						areaText.setStyle(lengthBefore, (lengthBefore + 6),
+								"-fx-font-weight:bold; -fx-font-size:14px; -fx-fill:maroon;");
+
+						// Send it
+						chatClient.sentMessage("GMESS" + text);
+						
+						
+					} else {
+
+						
+						// Print my Message to Me
+						int lengthBefore = areaText.getText().length();
+						areaText.appendText((text.isEmpty() ? "" : "\n") + "Usted" + "->" + text);
+						areaText.setStyle(lengthBefore, (lengthBefore + 6),
+								"-fx-font-weight:bold; -fx-font-size:14px; -fx-fill:maroon;");
+
+						// Send it
+						chatClient.sentMessage("GMESS" + text);
+						
+					}
 					
-					// Send it
-					chatClient.sentMessage("GMESS" + text);
+					
+
 				}
 				mensajeText.clear();
 			}
@@ -192,14 +254,12 @@ public class ChatScene extends BorderPane implements Initializable {
 
 		mensajeText.setCursor(new ImageCursor(new Image(getClass().getResourceAsStream("/img/cursor.png")), 0, 32));
 
-		
 		clientesList.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
 			@Override
 			public ListCell<String> call(ListView<String> list) {
 				return new CostumeCell();
 			}
 		});
-		
 
 		// SentMessage
 		enviarButton.setOnAction(mensajeText.getOnAction());
@@ -220,11 +280,11 @@ public class ChatScene extends BorderPane implements Initializable {
 				setText(null);
 			} else {
 				setContentDisplay(ContentDisplay.RIGHT);
-				
+
 				ImageView imageView = new ImageView(
 						new Image(getClass().getResourceAsStream("/img/" + map.get(item) + ".png")));
 				setGraphic(imageView);
-				
+
 				setText(item);
 			}
 		}
@@ -306,14 +366,14 @@ public class ChatScene extends BorderPane implements Initializable {
 				sentMessage("GETALLMESS");
 			} catch (UnknownHostException e) {
 				Platform.runLater(() -> {
-					Notifications.create().title("Host desconocido").text("Imposible de encontrar:\n[" + e.getMessage() + "]")
-							.showError();
+					Notifications.create().title("Host desconocido")
+							.text("Imposible de encontrar:\n[" + e.getMessage() + "]").showError();
 				});
 				return false;
 			} catch (IOException e) {
 				Platform.runLater(() -> {
-					Notifications.create().title(e.getMessage()).text("No se puede conectar con el servidor:\n[" + host + "]")
-							.showError();
+					Notifications.create().title(e.getMessage())
+							.text("No se puede conectar con el servidor:\n[" + host + "]").showError();
 				});
 				e.printStackTrace();
 				return false;
@@ -424,14 +484,14 @@ public class ChatScene extends BorderPane implements Initializable {
 
 						//
 						Platform.runLater(() -> {
-						
+
 							areaText.appendText(
 									(areaText.getText().isEmpty() ? "" : "\n") + array[0] + "->" + array[1]);
-							
+
 							areaText.setStyle(lengthBefore, (lengthBefore + array[0].length() + 3),
 									"-fx-font-weight:bold; -fx-font-size:14px; -fx-fill:"
 											+ colors[new ArrayList<String>(map.keySet()).indexOf(array[0])] + ";");
-							
+
 						});
 
 						// ----------------------- GOT Private Message
@@ -464,12 +524,11 @@ public class ChatScene extends BorderPane implements Initializable {
 						Platform.runLater(() -> {
 							LoginScene.mediaPlayer.play();
 							ClienteApp.stage.setScene(ClienteApp.loginscene.getScene());
-							
+
 							privateChatWindows.forEach(window -> window.stage.close());
 							digitalClock.stopClock();
 							Notifications.create().title("Desconexion del servidor")
-									.text("Has sido desconectado del servidor.\n" + message.substring(4))
-									.showWarning();
+									.text("Has sido desconectado del servidor.\n" + message.substring(4)).showWarning();
 						});
 
 						// ----------------------- GOT A TIMELIMIT by Server
@@ -480,8 +539,8 @@ public class ChatScene extends BorderPane implements Initializable {
 					} else if (message.startsWith("GETINFO")) {
 						String[] infos = message.substring(7).split("><:><");
 						Platform.runLater(() -> {
-							areaText.appendText((areaText.getText().isEmpty() ? "" : "\n") + "LoggedInDate: "
-									+ infos[0] + " LoggedInTime: " + infos[1]);
+							areaText.appendText((areaText.getText().isEmpty() ? "" : "\n") + "LoggedInDate: " + infos[0]
+									+ " LoggedInTime: " + infos[1]);
 						});
 					} else {
 						String message = this.message;

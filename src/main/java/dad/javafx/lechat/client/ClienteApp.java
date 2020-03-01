@@ -27,7 +27,6 @@ public class ClienteApp extends Application {
 		// carga de las escenas
 
 		stage.setScene(loginscene.getScene());
-
 		stage.show();
 
 		stage.setOnCloseRequest(c -> {
