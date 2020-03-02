@@ -13,19 +13,20 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.web.WebEngine;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 public class LoginScene extends StackPane implements Initializable {
-
 
 	// vista
 
@@ -36,7 +37,7 @@ public class LoginScene extends StackPane implements Initializable {
 	private TextField nombreText;
 
 	@FXML
-	private	PasswordField passText;
+	private PasswordField passText;
 
 	@FXML
 	private Button invitadoButton;
@@ -49,14 +50,22 @@ public class LoginScene extends StackPane implements Initializable {
 
 	@FXML
 	private TextField portText;
-	
-	Scene scene;
 
+	@FXML
+	private Button infoButton;
+
+	@FXML
+	private Button volOnButton;
+
+	@FXML
+	private Button volOffButton;
+
+	Scene scene;
 
 	public LoginScene() {
 
 		this.connected = false;
-		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/leChatLoginScene.fxml"));
 		loader.setController(this);
 		loader.setRoot(this);
@@ -68,38 +77,37 @@ public class LoginScene extends StackPane implements Initializable {
 			e.printStackTrace();
 		}
 
-		
 	}
 
 	private boolean connected;
 	public static MediaPlayer mediaPlayer;
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		System.out.println("[!] Login Scene cargada");
 
 		Media media = null;
-		//Media music = null;
+		Media music = null;
 
 		try {
 			media = new Media(getClass().getResource("/video/chat.mp4").toURI().toString());
-			//music = new Media(getClass().getResource("/music/sample.mp3").toURI().toString());
-			//MediaPlayer musicPlay = new MediaPlayer(music);
-			//musicPlay.play();
-			//musicPlay.setCycleCount(MediaPlayer.INDEFINITE);
-
-			/*
-			Platform.runLater(() -> {
-				Notifications.create().text("Cliente leChat cargado con éxito").showInformation();
-
-			});
-			*/
-
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
+			music = new Media(getClass().getResource("/music/sample.mp3").toURI().toString());
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		MediaPlayer musicPlay = new MediaPlayer(music);
+		musicPlay.play();
+		musicPlay.setCycleCount(MediaPlayer.INDEFINITE);
+
+		/*
+		 * Platform.runLater(() -> {
+		 * Notifications.create().text("Cliente leChat cargado con éxito").
+		 * showInformation();
+		 * 
+		 * });
+		 */
 
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setMute(true);
@@ -120,9 +128,29 @@ public class LoginScene extends StackPane implements Initializable {
 
 		mediaPlayer.setOnError(() -> System.out.println("[ERROR] Media error:" + mediaPlayer.getError().toString()));
 
+		// info
+		infoButton.setOnAction(e -> {
+/*
+			System.out.println("onLoadHelpFile clicked" + webView);
+			WebEngine webEngine = webView.getEngine();
+			webEngine.load(getClass().getResource("/res/readme.html").toExternalForm());
+*/
+		});
+
+		// volumen On
+		volOnButton.setOnAction(e -> {
+			musicPlay.play();
+		});
+
+		// volumen Off
+		volOffButton.setOnAction(e -> {
+			musicPlay.stop();
+		});
+
 		// login como admin
 		adminButton.setOnAction(a -> {
 
+			musicPlay.stop();
 			String nombre = nombreText.getText();
 			String pass = passText.getText();
 
@@ -145,6 +173,7 @@ public class LoginScene extends StackPane implements Initializable {
 
 		// login como invitado
 		invitadoButton.setOnAction(a -> {
+			musicPlay.stop();
 			String nombre = nombreText.getText();
 
 			// validacion primer paso
@@ -158,22 +187,21 @@ public class LoginScene extends StackPane implements Initializable {
 			}
 		});
 
-		
 		// si nuestra ip de servidor esta vacia que nos la ponga directamente como ::1
 
 		ipText.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if(ipText.getText().isEmpty())
+				if (ipText.getText().isEmpty())
 					ipText.setText("::1");
 
 			}
 
 		});
-		
+
 		// misma idea para el puerto del servidor, usando regex, nos lo ponga a 5555
-		
+
 		portText.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
@@ -182,10 +210,10 @@ public class LoginScene extends StackPane implements Initializable {
 					portText.setText(newValue.replaceAll("\\D", ""));
 				if (portText.getText().length() > 5)
 					portText.setText(newValue.substring(0, 5));
-				
-				if(portText.getText().isEmpty())
+
+				if (portText.getText().isEmpty())
 					portText.setText("5555");
-				
+
 			}
 		});
 
@@ -198,13 +226,13 @@ public class LoginScene extends StackPane implements Initializable {
 	 */
 	private void tryLogin(Type type) {
 
-		//indicator.setVisible(true);
+		// indicator.setVisible(true);
 		CountDownLatch latch = new CountDownLatch(1);
 		connected = false;
 
 		adminButton.setDisable(true);
 		invitadoButton.setDisable(true);
-		
+
 		// -------------- Servidor
 		new Thread(() -> {
 			ClienteApp.chatscene.initClient(ipText.getText().replace(".", ""), Integer.parseInt(portText.getText()),
@@ -227,11 +255,12 @@ public class LoginScene extends StackPane implements Initializable {
 				if (connected) {
 					ClienteApp.chatscene.initChatScene();
 					ClienteApp.stage.setScene(ClienteApp.chatscene.getScene());
-					//indicator.setVisible(false);
+					// indicator.setVisible(false);
 					LoginScene.mediaPlayer.pause();
 				} else {
-					//Notifications.create().title("Error").text("Can't Connect to Server!").showError();
-					//indicator.setVisible(false);
+					// Notifications.create().title("Error").text("Can't Connect to
+					// Server!").showError();
+					// indicator.setVisible(false);
 				}
 				adminButton.setDisable(false);
 				invitadoButton.setDisable(false);

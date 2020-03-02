@@ -177,8 +177,8 @@ public class ChatScene extends BorderPane implements Initializable {
 					chatClient.sentMessage("GETINFO");
 				else {
 					// emoji
-					if (mensajeText.getText().contains(":D")) {
-						mensajeText.setText(mensajeText.getText().replace(":D", "😁"));
+					if (mensajeText.getText().contains(";)")) {
+						mensajeText.setText(mensajeText.getText().replace(";)", "	(͠≖ ͜ʖ͠≖)"));
 						text = mensajeText.getText();
 						// Print my Message to Me
 						int lengthBefore = areaText.getText().length();
@@ -190,7 +190,7 @@ public class ChatScene extends BorderPane implements Initializable {
 						chatClient.sentMessage("GMESS" + text);
 						
 					} else if (mensajeText.getText().contains(":)")) {
-						mensajeText.setText(mensajeText.getText().replace(":)", "🙂"));
+						mensajeText.setText(mensajeText.getText().replace(":)", "	( ͡° ͜ʖ ͡°)"));
 						
 						text = mensajeText.getText();
 						// Print my Message to Me
@@ -204,7 +204,7 @@ public class ChatScene extends BorderPane implements Initializable {
 						
 						
 					} else if (mensajeText.getText().contains(":(")) {
-						mensajeText.setText(mensajeText.getText().replace(":(", "☹️"));
+						mensajeText.setText(mensajeText.getText().replace(":(", "( ͡° ʖ̯ ͡°)"));
 						
 						text = mensajeText.getText();
 						// Print my Message to Me
@@ -218,7 +218,7 @@ public class ChatScene extends BorderPane implements Initializable {
 						
 						
 					} else if (mensajeText.getText().contains(":@")) {
-						mensajeText.setText(mensajeText.getText().replace(":@", "😡"));
+						mensajeText.setText(mensajeText.getText().replace(":@", "(⌐ ͡■ ͜ʖ ͡■)"));
 						
 						text = mensajeText.getText();
 						// Print my Message to Me
@@ -230,6 +230,7 @@ public class ChatScene extends BorderPane implements Initializable {
 						// Send it
 						chatClient.sentMessage("GMESS" + text);
 						
+					// 	(͡ ° ͜ʖ ͡ °)						
 						
 					} else {
 
