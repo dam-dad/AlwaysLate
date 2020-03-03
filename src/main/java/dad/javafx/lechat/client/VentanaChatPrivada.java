@@ -41,27 +41,29 @@ public class VentanaChatPrivada extends BorderPane implements Initializable{
 	 * 
 	 * @param owner
 	 * @param receiver
+	 * @throws IOException 
 	 */
-	public VentanaChatPrivada(String senter, String receiver) {
+	public VentanaChatPrivada(String senter, String receiver)  {
+		
 		this.senter = senter;
 		this.receiver = receiver;
 		this.stage = new Stage();
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/leChatprivateChat.fxml"));
-		loader.setController(this);
-		loader.setRoot(this);
-
 		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/leChatPrivateChat.fxml"));
+			loader.setController(this);
+			loader.setRoot(this);
 			loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-		stage.setAlwaysOnTop(true);
-		stage.initStyle(StageStyle.UNIFIED);
-		stage.setScene(new Scene(this));
-		stage.getScene().getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
-		stage.show();
+			stage.setAlwaysOnTop(true);
+			stage.initStyle(StageStyle.UNIFIED);
+			stage.setScene(new Scene(this));
+			//stage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+			stage.show();
+		} catch (Exception e) {
+			System.out.println("[i] Problema en la carga del chat privado");
+			}
+
 	}
 
 	/**
@@ -88,14 +90,14 @@ public class VentanaChatPrivada extends BorderPane implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("Private Chat Window Initialized....");
 
-		label.setText(senter + "-> private Chat With <-" + receiver);
+		label.setText("CHAT PRIVADO [" + receiver +" ]");
 		stage.setTitle(label.getText());
 
 		messageField.setOnAction(ac -> {
 			if (!messageField.getText().isEmpty()) {
 				ClienteApp.chatscene.chatClient
 						.sentMessage("PMESS" + senter + "><:><" + messageField.getText() + "><:><" + receiver);
-				update("You" + "->" + messageField.getText());
+				update("Usted" + "->" + messageField.getText());
 				messageField.clear();
 			}
 		});

@@ -136,15 +136,16 @@ public class LoginScene extends StackPane implements Initializable {
 			webEngine.load(getClass().getResource("/res/readme.html").toExternalForm());
 */
 		});
+		
 
 		// volumen On
 		volOnButton.setOnAction(e -> {
-			musicPlay.play();
+			musicPlay.setMute(false);
 		});
 
 		// volumen Off
 		volOffButton.setOnAction(e -> {
-			musicPlay.stop();
+			musicPlay.setMute(true);
 		});
 
 		// login como admin

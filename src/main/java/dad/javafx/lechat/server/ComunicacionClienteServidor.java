@@ -64,7 +64,7 @@ public class ComunicacionClienteServidor implements Runnable {
 					String[] array = text.substring(5).split("><:><");
 					userName = array[0];
 					if (server.addUser(clientSocket, array[0], array[1], array[2])) {
-						if (array[2].equals("GUEST")) {
+						if (array[2].equals("INVITADO")) {
 							int seconds = Integer.parseInt(server.tiempoText.getText());
 							// Send these messages to Client
 							toClient.println("[Server]<>Connected,you have " + (seconds / 60) + " minutes left..");

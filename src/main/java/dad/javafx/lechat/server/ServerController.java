@@ -312,7 +312,7 @@ public class ServerController implements Runnable, Initializable {
 		}
 
 		// (Guest+guest.size()>maximumGuest)=DISCONNECT
-		if (genre.equals("GUEST")
+		if (genre.equals("INVITADO")
 				&& clients.stream().filter(client -> client.getType().equals("INVITADO")).count() >= maximumGuests) {
 			sendMessageToClient(socket, "DISC" + "Numero maximo de invitados permitidos (" + maximumGuests + ")");
 			return false;

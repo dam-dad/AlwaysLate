@@ -1,5 +1,6 @@
 package dad.javafx.lechat.complementos;
 
+import dad.javafx.lechat.client.ClienteApp;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
@@ -29,7 +30,7 @@ public class relojDigital extends StackPane {
 	 */
 	public relojDigital(int width, int height) {
 
-		// ��������� �������������
+	
 		setWidth(width);
 		setHeight(height);
 
@@ -66,8 +67,7 @@ public class relojDigital extends StackPane {
 						Thread.sleep(1000);
 						timeNow.set(getTimeEdited(--countDown));
 						if(countDown==0){
-						//	System.out.println("Sented message QUIT");
-						//	XR3Chat.chatScene.chatClient.sentMessage("QUIT");
+							ClienteApp.chatscene.chatClient.sentMessage("QUIT");
 						}
 					}
 					return null;

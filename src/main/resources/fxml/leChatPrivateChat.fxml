@@ -13,7 +13,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="458.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <TextArea fx:id="messagesArea" editable="false" focusTraversable="false" prefHeight="317.0" prefWidth="568.0" promptText="no messages...." BorderPane.alignment="CENTER">
+      <TextArea fx:id="messagesArea" editable="false" focusTraversable="false" prefHeight="317.0" prefWidth="568.0" promptText="no hay mensajes" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
@@ -45,7 +45,7 @@
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
    <top>
-      <Label fx:id="label" alignment="CENTER" focusTraversable="false" prefHeight="19.0" prefWidth="668.0" text="Chat privado con -&gt;" BorderPane.alignment="CENTER">
+      <Label fx:id="label" alignment="CENTER" focusTraversable="false" prefHeight="19.0" prefWidth="668.0" text="Chat privado con" BorderPane.alignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>

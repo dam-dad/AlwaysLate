@@ -43,7 +43,7 @@ public class ChatScene extends BorderPane implements Initializable {
 
 	relojDigital digitalClock;
 	public ChatClient chatClient;
-	ArrayList<VentanaChatPrivada> privateChatWindows = new ArrayList<VentanaChatPrivada>();
+	ArrayList<VentanaChatPrivada> ventanachaprivadaArrayList = new ArrayList<VentanaChatPrivada>();
 
 	static Map<String, String> map = new TreeMap<String, String>();
 	String[] colors = { "ORANGE", "CYAN", "MAGENTA", "GREEN", "BLUE", "BROWN", "ORANGE", "CYAN", "MAGENTA", "GREEN",
@@ -115,7 +115,7 @@ public class ChatScene extends BorderPane implements Initializable {
 	public void initChatScene() {
 
 		// Clear
-		privateChatWindows.clear();
+		ventanachaprivadaArrayList.clear();
 		mensajeText.clear();
 		areaText.clear();
 
@@ -130,7 +130,7 @@ public class ChatScene extends BorderPane implements Initializable {
 				if (clientesList.getItems().size() != 0 && !clientesList.getSelectionModel().isEmpty()) {
 					String selected = clientesList.getSelectionModel().getSelectedItem();
 
-					if (privateChatWindows.stream().anyMatch(window -> {
+					if (ventanachaprivadaArrayList.stream().anyMatch(window -> {
 						if (window.receiver.equals(selected)) {
 							window.show();
 							return true;
@@ -139,7 +139,7 @@ public class ChatScene extends BorderPane implements Initializable {
 					})) {
 					} else {
 						VentanaChatPrivada window = new VentanaChatPrivada(chatClient.getUserName(), selected);
-						privateChatWindows.add(window);
+						ventanachaprivadaArrayList.add(window);
 						window.show();
 					}
 
@@ -280,7 +280,7 @@ public class ChatScene extends BorderPane implements Initializable {
 				setGraphic(null);
 				setText(null);
 			} else {
-				setContentDisplay(ContentDisplay.RIGHT);
+				setContentDisplay(ContentDisplay.LEFT);
 
 				ImageView imageView = new ImageView(
 						new Image(getClass().getResourceAsStream("/img/" + map.get(item) + ".png")));
@@ -432,7 +432,7 @@ public class ChatScene extends BorderPane implements Initializable {
 
 		/******** Implements the Thread ****************/
 		@Override
-		public void run() {
+		public void run(){
 
 			/////////// Read Server Messages //////////
 
@@ -500,7 +500,7 @@ public class ChatScene extends BorderPane implements Initializable {
 						String[] array = message.substring(5).split("><:><");
 
 						// Check if i had ever spoke with this person
-						if (privateChatWindows.stream().anyMatch(window -> {
+						if (ventanachaprivadaArrayList.stream().anyMatch(window -> {
 							if (window.receiver.equals(array[0])) {
 								window.update(array[0] + "->" + array[1]);
 								return true;
@@ -512,12 +512,12 @@ public class ChatScene extends BorderPane implements Initializable {
 						} else {
 							Platform.runLater(() -> {
 								VentanaChatPrivada window = new VentanaChatPrivada(userName, array[0]);
-								privateChatWindows.add(window);
+								ventanachaprivadaArrayList.add(window);
 								window.update(array[0] + " ->" + array[1]);
 							});
 						}
 
-						// DISCONNECTED FROM SERVER XOXOXO go cry
+						// DISCONNECTED FROM SERVER
 					} else if (message.startsWith("DISC")) {
 						String message = this.message;
 						disconnectFromServer();
@@ -526,7 +526,7 @@ public class ChatScene extends BorderPane implements Initializable {
 							LoginScene.mediaPlayer.play();
 							ClienteApp.stage.setScene(ClienteApp.loginscene.getScene());
 
-							privateChatWindows.forEach(window -> window.stage.close());
+							ventanachaprivadaArrayList.forEach(window -> window.stage.close());
 							digitalClock.stopClock();
 							Notifications.create().title("Desconexion del servidor")
 									.text("Has sido desconectado del servidor.\n" + message.substring(4)).showWarning();
