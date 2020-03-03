@@ -1,6 +1,8 @@
 package dad.javafx.lechat.client;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.web.WebEngine;
+import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,6 +31,8 @@ import javafx.scene.image.Image;
 
 public class LoginScene extends StackPane implements Initializable {
 
+	Ayudita ayudita;
+	
 	// vista
 
 	@FXML
@@ -130,11 +135,31 @@ public class LoginScene extends StackPane implements Initializable {
 
 		// info
 		infoButton.setOnAction(e -> {
-/*
-			System.out.println("onLoadHelpFile clicked" + webView);
-			WebEngine webEngine = webView.getEngine();
-			webEngine.load(getClass().getResource("/res/readme.html").toExternalForm());
-*/
+			
+			
+			try {
+				Desktop desk = Desktop.getDesktop();
+				desk.browse(new URI("https://github.com/dam-dad/LeChat/blob/master/README.md"));
+			} catch (IOException | URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			/*
+			try {
+				ayudita = new Ayudita();
+				Stage secondcontroller = new Stage();
+				secondcontroller.setScene(new Scene(ayudita.getView(), 800, 600));
+				secondcontroller.setTitle("LeChat v1.0.0 ## Guía para el usuario ");
+				secondcontroller.getIcons().add(new Image(getClass().getResource("/img/chatIco.png").toExternalForm()));
+				secondcontroller.show();
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			*/
+			
 		});
 		
 
