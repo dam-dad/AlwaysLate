@@ -67,10 +67,10 @@ public class ComunicacionClienteServidor implements Runnable {
 						if (array[2].equals("INVITADO")) {
 							int seconds = Integer.parseInt(server.tiempoText.getText());
 							// Send these messages to Client
-							toClient.println("[Server]<>Connected,you have " + (seconds / 60) + " minutes left..");
+							toClient.println("SERVIDOR: Bienvenido invitado, tu sesión expirará en " + (seconds / 60) + " minutos");
 							toClient.println("TIMELIMIT" + seconds);
 						} else
-							toClient.println("[Server]<>Connected,you have unlimited access..");
+							toClient.println("SERVIDOR: Bienvenido admin, tienes acceso ilimitado y mensaje privado habilitado.");
 					}
 
 					// ----------------------- DISCONNECT FROM SERVER
@@ -102,17 +102,17 @@ public class ComunicacionClienteServidor implements Runnable {
 			}
 		}
 
-		server.areaText.appendText("\nCommunication stopped for Client:(" + userName + ")");
+		server.areaText.appendText("\nComunicación parada por el cliente [ " + userName + " ]");
 	}
 
 	/**
 	 * Disconnects the User
 	 */
 	public void disconnectUser() {
-		server.areaText.appendText("\nDisconnecting Client: (" + userName + ")...");
+		server.areaText.appendText("\nDesconectando cliente [ " + userName + " ]");
 		server.removeUser(clientSocket, userName);
 		stopConnection();
-		server.areaText.appendText("\nClient: (" + userName + ") has been disconnected!");
+		server.areaText.appendText("\nCliente: [ " + userName + " ] ha sido desconectado!");
 	}
 
 	/**

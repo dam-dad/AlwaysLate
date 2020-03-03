@@ -31,7 +31,6 @@ import javafx.scene.image.Image;
 
 public class LoginScene extends StackPane implements Initializable {
 
-	Ayudita ayudita;
 	
 	// vista
 

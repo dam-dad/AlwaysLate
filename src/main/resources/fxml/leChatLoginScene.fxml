@@ -29,11 +29,11 @@
         </rowConstraints>
          <children>
             <TextField fx:id="nombreText" promptText="Nombre de usuario" />
-            <Button fx:id="invitadoButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Entrar como invitado" GridPane.rowIndex="1" />
-            <Button fx:id="adminButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Entrar como administrador" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passText" promptText="Contraseña" GridPane.columnIndex="1" />
             <TextField fx:id="ipText" promptText="IP del servidor" GridPane.rowIndex="2" />
             <TextField fx:id="portText" promptText="Puerto del servidor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <PasswordField fx:id="passText" promptText="Contraseña" GridPane.columnIndex="1" />
+            <Button fx:id="invitadoButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Entrar como invitado" GridPane.rowIndex="1" />
+            <Button fx:id="adminButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Entrar como administrador" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
                   <Button fx:id="infoButton" mnemonicParsing="false" prefHeight="23.0" prefWidth="28.0">

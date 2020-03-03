@@ -1,5 +1,6 @@
 package dad.javafx.lechat.server;
 
+import java.awt.Desktop;
 import java.io.DataInputStream;
 
 import java.io.DataOutputStream;
@@ -7,6 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -102,6 +105,45 @@ public class ServerController implements Runnable, Initializable {
 	void onOnAction(ActionEvent event) {
 		startServer();
 	}
+	
+	// menu bar
+	
+    @FXML
+    void onaboutMenuAction(ActionEvent event) {
+		try {
+			Desktop desk = Desktop.getDesktop();
+			desk.browse(new URI("https://github.com/dam-dad/LeChat/blob/master/README.md"));
+		} catch (IOException | URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    }
+
+    @FXML
+    void onserverMenuAction(ActionEvent event) {
+		try {
+			Desktop desk = Desktop.getDesktop();
+			desk.browse(new URI("https://github.com/dam-dad/LeChat/blob/master/README.md"));
+		} catch (IOException | URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+    }
+
+    @FXML
+    void onuserMenuAction(ActionEvent event) {
+		try {
+			Desktop desk = Desktop.getDesktop();
+			desk.browse(new URI("https://github.com/dam-dad/LeChat/blob/master/README.md"));
+		} catch (IOException | URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+    }
+	
+	
 
 	// [>] REFERENCIA A BACKUP
 	@FXML
@@ -159,7 +201,7 @@ public class ServerController implements Runnable, Initializable {
 		areaText.setPrefWidth(300);
 		areaText.setWrapText(true);
 		areaText.setEditable(false);
-		areaText.setText("Press to start the Server....");
+		areaText.setText("Pulsa empezar para iniciar");
 
 		puertoText.textProperty().addListener(new ChangeListener<String>() {
 			@Override

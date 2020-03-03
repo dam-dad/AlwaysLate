@@ -6,32 +6,52 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#onserverMenuAction" text="Guía para servidor">
+                     <graphic>
+                        <ImageView pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../img/serverIco.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#onuserMenuAction" text="Guía para el usuario">
+                     <graphic>
+                        <ImageView pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../img/userIco.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#onaboutMenuAction" text="Sobre LeChat">
+                     <graphic>
+                        <ImageView pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../img/ADMIN.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
             </items>
           </Menu>
         </menus>
@@ -40,33 +60,71 @@
    <right>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Puerto" />
-            <Label text="Invitados MAX" GridPane.rowIndex="2" />
-            <Label text="Tiempo limite" GridPane.rowIndex="4" />
             <TextField fx:id="puertoText" promptText="puerto escuchando" GridPane.rowIndex="1" />
             <TextField fx:id="invitadoText" promptText="nº maximo guest" GridPane.rowIndex="3" />
-            <TextField fx:id="tiempoText" promptText="tiempo limite" GridPane.rowIndex="5" />
+            <TextField fx:id="tiempoText" promptText="segundos sesion" GridPane.rowIndex="5" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Puerto">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Invitados MAX">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+               <children>
+                  <Label text="Tiempo límite">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </children>
+         <opaqueInsets>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
       </GridPane>
    </right>
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="onButton" mnemonicParsing="false" onAction="#onOnAction" text="encender" />
+            <Button fx:id="onButton" defaultButton="true" mnemonicParsing="false" onAction="#onOnAction" text="encender" />
             <Button fx:id="offButton" mnemonicParsing="false" onAction="#onOffAction" text="apagar" />
             <Button fx:id="backupButton" mnemonicParsing="false" onAction="#onActivarButton" text="activar backup" />
             <Button fx:id="apagarButton" mnemonicParsing="false" onAction="#onApagarButton" text="apagar backup" />
+            <ImageView fitHeight="84.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/chatLogo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </ImageView>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -74,6 +132,6 @@
       </HBox>
    </bottom>
    <center>
-      <TextArea fx:id="areaText" prefHeight="275.0" prefWidth="455.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="areaText" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
