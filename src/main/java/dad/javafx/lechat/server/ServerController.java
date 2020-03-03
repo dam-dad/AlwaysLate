@@ -465,7 +465,7 @@ public class ServerController implements Runnable, Initializable {
 		///////// Notify all the Clients about Removed Client //////
 		clients.stream().forEach(client -> {
 			sendMessageToClient(client.getSocket(), "REMOVE" + userName);
-			sendMessageToClient(client.getSocket(), "(" + userName + ")" + " left the room...");
+			sendMessageToClient(client.getSocket(), "(" + userName + ")" + " ha abandonado la sala.");
 		});
 
 		areaText.appendText("\nConnected Users Now are: (" + clients.size() + ")");
@@ -503,7 +503,7 @@ public class ServerController implements Runnable, Initializable {
 	public void sentPrivateMessage(Socket clientSocket, String fromClient, String message, String toClient) {
 
 		areaText.appendText(
-				"\nPrivate message(from->" + fromClient + " to->" + toClient + ") Message: (" + message + ")");
+				"\nMensaje privado(from->" + fromClient + " to->" + toClient + ") Mensaje: (" + message + ")");
 
 		///////// Notify all the Clients about the Message //////
 		for (Client client : clients)
