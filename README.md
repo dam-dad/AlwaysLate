@@ -16,8 +16,8 @@ Puedes encontrar cómo utilizar este proyecto en nuestra [Wiki](https://github.c
 
 ## Autores ✒️
 
-Puedes mirar la lista de todos los [contribuyentes](https://raw.githubusercontent.com/dam-dad/LeChat/master/Contributors.md) quíenes han participado en este proyecto. 
+Puedes mirar la lista de todos los [contribuyentes](https://github.com/dam-dad/LeChat/blob/master/Contributors.md) quíenes han participado en este proyecto. 
 
 ## Licencia 📄
 
-Este proyecto está bajo la Licencia "GNU General Public License v3.0" - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+Este proyecto está bajo la Licencia "GNU General Public License v3.0" - mira el archivo [LICENSE](LICENSE) para detalles
