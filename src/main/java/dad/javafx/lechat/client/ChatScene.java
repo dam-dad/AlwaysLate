@@ -402,7 +402,7 @@ public class ChatScene extends BorderPane implements Initializable {
 			return password;
 		}
 
-		/** Returns user's Genre(GUEST|RESIDENT) */
+		/** Returns user's type */
 		public Type getType() {
 			return type;
 		}

@@ -123,7 +123,7 @@ public class ServerController implements Runnable, Initializable {
     void onserverMenuAction(ActionEvent event) {
 		try {
 			Desktop desk = Desktop.getDesktop();
-			desk.browse(new URI("https://github.com/dam-dad/LeChat/blob/master/README.md"));
+			desk.browse(new URI("https://github.com/dam-dad/LeChat/wiki/Gu%C3%ADa-del-uso-del-servidor"));
 		} catch (IOException | URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -135,7 +135,7 @@ public class ServerController implements Runnable, Initializable {
     void onuserMenuAction(ActionEvent event) {
 		try {
 			Desktop desk = Desktop.getDesktop();
-			desk.browse(new URI("https://github.com/dam-dad/LeChat/blob/master/README.md"));
+			desk.browse(new URI("https://github.com/dam-dad/LeChat/wiki/Gu%C3%ADa-de-uso-del-cliente-de-chat"));
 		} catch (IOException | URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -269,7 +269,7 @@ public class ServerController implements Runnable, Initializable {
 				////////// Create a Seperate Thread for that each client ///////
 				new ComunicacionClienteServidor(this, socket);
 				Platform.runLater(() -> {
-					areaText.appendText("\nNew Client Connected....");
+					areaText.appendText("\n >> Nuevo cliente conectado");
 				});
 
 				Thread.sleep(150);
@@ -309,7 +309,7 @@ public class ServerController implements Runnable, Initializable {
 
 		////////// Configure the Buttons //////////
 		onButton.setDisable(true);
-		areaText.setText("Waiting for clients to connect....");
+		areaText.setText("Esperando a que se conecten clientes...");
 	}
 
 	/**
@@ -380,7 +380,7 @@ public class ServerController implements Runnable, Initializable {
 			///////// //////
 			clients.stream().forEach(client -> {
 				sendMessageToClient(client.getSocket(), "ADD" + userName + "><:><" + genre);
-				sendMessageToClient(client.getSocket(), "(" + userName + ")" + "has joined the room...");
+				sendMessageToClient(client.getSocket(), "(" + userName + ")" + "se ha unido a la sala...");
 			});
 
 		}
