@@ -305,7 +305,9 @@ public class ServerController implements Runnable, Initializable {
 			
 			String serverIp = socket.getLocalAddress().getHostAddress();
 			
-			serverSocket = new ServerSocket( serverPort, 1, InetAddress.getByName(serverIp) );
+			serverSocket = new ServerSocket( serverPort);
+			
+			System.out.println(serverSocket.getInetAddress().toString());
 			
 			System.out.println("Esperando conexiones por: "
 					+ "\nIP:\t"+serverSocket.getInetAddress().getLocalHost().getHostAddress()

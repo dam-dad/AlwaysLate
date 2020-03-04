@@ -260,10 +260,18 @@ public class LoginScene extends StackPane implements Initializable {
 
 		// -------------- Servidor
 		new Thread(() -> {
+			/*
 			ClienteApp.chatscene.initClient(ipText.getText().replace(".", ""), Integer.parseInt(portText.getText()),
 					nombreText.getText(), passText.getText(), type);
 			connected = ClienteApp.chatscene.connectToServer();
 			latch.countDown();
+			*/
+			ClienteApp.chatscene.initClient(ipText.getText(), Integer.parseInt(portText.getText()),
+					nombreText.getText(), passText.getText(), type);
+			connected = ClienteApp.chatscene.connectToServer();
+			latch.countDown();
+			
+			
 		}).start();
 
 		// --------------- Wait above| Thread to finish
