@@ -6,6 +6,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.DatagramSocket;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URI;
@@ -157,7 +160,7 @@ public class ServerController implements Runnable, Initializable {
 
 	}
 
-	int serverPort = 4444;
+	int serverPort = 5555;
 	ServerSocket serverSocket;
 	Thread thread;
 	Socket socket;
@@ -291,8 +294,23 @@ public class ServerController implements Runnable, Initializable {
 		////////// Initialize the Server Socket ///////
 		try {
 
-			serverSocket = new ServerSocket(serverPort);
-			System.out.println(serverSocket.getInetAddress().getCanonicalHostName());
+			
+			//System.out.println("[>] CanonicalHostname:\t\t"+serverSocket.getInetAddress().getCanonicalHostName());
+			System.out.println("[>] Inet4Adress:\t\t"+Inet4Address.getLocalHost().getHostAddress());
+			
+			// found ip by datagram socket
+			final DatagramSocket socket = new DatagramSocket();
+			socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+			System.out.println("[>] Datagram LocalAddress:\t"+socket.getLocalAddress().getHostAddress());
+			
+			String serverIp = socket.getLocalAddress().getHostAddress();
+			
+			serverSocket = new ServerSocket( serverPort, 1, InetAddress.getByName(serverIp) );
+			
+			System.out.println("Esperando conexiones por: "
+					+ "\nIP:\t"+serverSocket.getInetAddress().getLocalHost().getHostAddress()
+					+ "\nPuerto:\t"+serverPort);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 			areaText.setText(e.getMessage());
