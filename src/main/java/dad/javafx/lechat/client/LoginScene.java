@@ -219,7 +219,7 @@ public class LoginScene extends StackPane implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				if (ipText.getText().isEmpty())
-					ipText.setText("::1");
+					ipText.setText("127.0.0.1");
 
 			}
 

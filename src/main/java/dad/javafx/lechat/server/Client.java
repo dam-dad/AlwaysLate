@@ -14,7 +14,7 @@ public class Client {
 	private LocalTime lastLoggedInHour;
 
 	/**
-	 * RESIDENT
+	 * ADMINISTRADOR
 	 * 
 	 * @param socket
 	 * @param userName
@@ -31,7 +31,7 @@ public class Client {
 	}
 
 	/**
-	 * GUEST
+	 * INVITADO
 	 * 
 	 * @param socket
 	 * @param userName
